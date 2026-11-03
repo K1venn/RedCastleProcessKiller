@@ -4,6 +4,10 @@ Educational Proof of Concept built to test and validate the process termination 
 
 The driver exposes an IOCTL that allows any user-mode process with administrator privileges to terminate arbitrary processes from kernel mode, bypassing protections commonly enforced by EDR and AV solutions. This PoC was developed by the offensive security team to reproduce the vulnerability, understand its impact, and help blue teams build detection and prevention strategies against BYOVD attacks.
 
+## Demo
+
+![demo](https://github.com/K1venn/RedCastleProcessKiller/blob/main/demo.gif?raw=true)
+
 ## How it works
 
 The attack leverages **RCFlCtrl.sys** (RedCastle Control Driver), a legitimately signed Windows kernel driver that contains a vulnerability in its IOCTL handler. The driver exposes IOCTL `0x85000158`, which accepts a PID and calls `ZwTerminateProcess` directly from kernel mode (ring 0).
